@@ -18,7 +18,8 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
                 "http://localhost:4200",
                 "https://localhost:4200",
-                "https://adeatest.netlify.app"
+                "https://adeatest.netlify.app",
+                "https://adeatest.rmalanco.com"
             )
             .WithMethods("GET", "POST", "PUT", "DELETE")
             .WithHeaders("Content-Type", "Authorization", "X-Requested-With", "Accept")
