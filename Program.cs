@@ -15,9 +15,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
     {
-        policy.WithOrigins("http://localhost:4200", "https://localhost:4200")
-              .AllowAnyHeader()
-              .AllowAnyMethod();
+        policy.WithOrigins(
+                "http://localhost:4200",
+                "https://localhost:4200",
+                "https://adeatest.netlify.app"
+            )
+            .WithMethods("GET", "POST", "PUT", "DELETE")
+            .WithHeaders("Content-Type", "Authorization", "X-Requested-With", "Accept")
+            .AllowCredentials();
     });
 });
 
@@ -35,6 +40,7 @@ if (app.Environment.IsDevelopment() || app.Environment.IsStaging())
 app.UseHttpsRedirection();
 
 // Usar CORS
+// Usar CORS antes de Authorization y MapControllers
 app.UseCors("AllowAngularApp");
 
 app.UseAuthorization();
